@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Student Feedback System</title>
+    <script>
+        function entryPass() {
+            fetch('api/illegal.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data === true) {
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+        }
+        entryPass();
+    </script>
+    <style>
+        #csvdataEntry input[type="file"]::file-selector-button {
+            background-color: rgb(174, 241, 74);
+            color: black;
+            width: 100px;
+            height: 50px;
+            border-radius: 5px;
+            padding: 5px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        #csvdataEntry input[type="file"]:hover::file-selector-button {
+            background-color: rgb(150, 220, 60); /* Slightly darker shade on hover */
+        }  
+    </style>
+    
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-jntu-logo">
+                <img src="download.png" alt="JNTUA Logo" style="max-width: 100px;">
+            </div>
+            <div class="college-name">
+            <h2>JNTUA College of Engineering (Autonomous) Ananthapuramu</h2>
+            <p>Sir Mokshagundam Vishveshwariah Road, Ananthapuramu, Andhra Pradesh-515002, INDIA</p>
+            </div>
+            <div class="college-naac-logo">
+                <img src="JNTUANAACA.webp" alt="NAAC Logo" style="max-width: 100px;">
+            </div>
+        </div>
+    </div> 
+
+    <div class="details">
+        <h2>Student Feedback System</h2>
+    </div>
+
+    <div class="login-container">
+        <h2>Select</h2>
+
+        <div class="form-group">
+            <label for="role">Choose Type</label>
+            <select name="role" id="role" onchange="toggleTheChoose()">
+                <option value="">Choose Option</option>
+                <option value="wcsv">WithOut CSV</option>
+                <option value="wocsv">With CSV</option>
+            </select>
+        </div>
+        <!-- data Entry for specific students-->
+        <form id="dataEntry"action="api/studentdata.php" method="post" class="hidden">
+            <input type="text" name="pin" placeholder="Enter Student PIN Number" required>
+            <input type="date" name="dob" required>
+            <select name="reg" required>
+                <option>SELECT REGULATION</option>
+                <option value="R20">R20</option>
+                <option value="R23">R23</option>
+            </select>
+            <input type="submit" value="Submit" id="studata1">
+        </form>
+        <!-- data entry by csv file-->
+        <form id="csvdataEntry" action="api/csvstudentdata.php" method="post" class="hidden" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <input type="submit" value="submit" name="submit">
+        </form>
+    </div>
+
+<script>
+    function toggleTheChoose(){
+        const role = document.getElementById('role').value;
+        const dataEntry = document.getElementById('dataEntry');
+        const csvdataEntry = document.getElementById('csvdataEntry');
+
+        dataEntry.classList.toggle('hidden', role !== 'wcsv');
+        csvdataEntry.classList.toggle('hidden', role !== 'wocsv');
+    }
+</script>
+</body>
+</html>

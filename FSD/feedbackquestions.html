@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Student Feedback System</title>
+    <style>
+        #feedbackForm button{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+        <div class="header-inner">
+            <div class="header-jntu-logo">
+                <img src="download.png" alt="JNTUA Logo" style="max-width: 100px;">
+            </div>
+            <div class="college-name">
+            <h2>JNTUA College of Engineering (Autonomous) Ananthapuramu</h2>
+            <p>Sir Mokshagundam Vishveshwariah Road, Ananthapuramu, Andhra Pradesh-515002, INDIA</p>
+            </div>
+            <div class="college-naac-logo">
+                <img src="JNTUANAACA.webp" alt="NAAC Logo" style="max-width: 100px;">
+            </div>
+        </div>
+    </div> 
+    <script>
+
+        // Create details section
+        let dtsdivtag = document.createElement('div');
+        dtsdivtag.setAttribute('class', 'details');
+
+        let h2tag = document.createElement('h2');
+        h2tag.innerText = 'Student Feedback System';
+
+        dtsdivtag.appendChild(h2tag);
+        document.body.appendChild(dtsdivtag);
+    </script>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <input type="number" name="QCount" id="QCount" placeholder="Enter Number of Questions" required>
+        <input type="submit" style="margin-top: 10px;"value="Generate Questions" onclick="createInput()">
+    </div>
+
+    <script>
+        function createInput() {
+    let count = document.getElementById('QCount').value;
+    count = parseInt(count);
+
+    // Remove existing form if it exists
+    let existingForm = document.getElementById('feedbackForm');
+    if (existingForm) {
+        existingForm.remove();
+    }
+
+    // Create form
+    let form = document.createElement('form');
+    form.id = 'feedbackForm';
+    form.method = 'post';
+    form.action = './api/feedbackquestions.php';
+
+    // Heading
+    let heading = document.createElement('h2');
+    heading.innerText = 'Feedback Questions';
+    form.appendChild(heading);
+
+    // Container for inputs
+    let container = document.createElement('div');
+    container.style.display = "flex";
+    container.style.flexDirection = "column";
+    container.style.alignItems = "center";
+    container.style.gap = "10px";
+
+    // Create input fields
+    for (let i = 1; i <= count; i++) {
+        let input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'question' + i;
+        input.placeholder = 'Enter Question ' + i;
+        input.required = true;
+        container.appendChild(input);
+    }
+
+    form.appendChild(container);
+
+    // Add hidden input for QCount
+    let qCountInput = document.createElement('input');
+    qCountInput.type = 'hidden';
+    qCountInput.name = 'QCount';
+    qCountInput.value = count;
+    form.appendChild(qCountInput);
+
+    // Submit button
+    let button = document.createElement('input');
+    button.type = 'submit';
+    button.value = 'Submit';
+    form.appendChild(button);
+
+    // Append form to body
+    document.body.appendChild(form);
+}
+
+    </script>
+
+</body>
+</html>

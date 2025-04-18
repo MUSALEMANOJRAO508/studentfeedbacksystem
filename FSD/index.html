@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-jntu-logo">
+                <img src="download.png" alt="JNTUA Logo" style="max-width: 100px;">
+            </div>
+            <div class="college-name">
+            <h2>JNTUA College of Engineering (Autonomous) Ananthapuramu</h2>
+            <p>Sir Mokshagundam Vishveshwariah Road, Ananthapuramu, Andhra Pradesh-515002, INDIA</p>
+            </div>
+            <div class="college-naac-logo">
+                <img src="JNTUANAACA.webp" alt="NAAC Logo" style="max-width: 100px;">
+            </div>
+        </div>
+    </div>  
+    <div class="details">
+        <h2>Student FeedBack System</h2>
+    </div>
+    <div class="login-container">
+        <h2>Registration</h2>
+        <form action="../FSD/api/Registration.php" method="post">
+            <div class="form-group">
+                <label for="userid">Enter the mail</label>
+                <input type="text" id="userid" name="userid" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                    <option value="faculty">Faculty</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Register">
+            </div>
+            <div>
+                <a href="login.html">Login</a>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,142 @@
+
+/* Subjects Container */
+.subjects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Subject Buttons */
+.subject-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    margin: 5px;
+}
+
+.subject-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Questions Container */
+.questions-container{
+    margin: 20px auto;
+    max-width: 800px;
+    /*background: white;*/
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Feedback Table */
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.feedback-table th,
+.feedback-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.feedback-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.feedback-table td:first-child {
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Feedback Notes */
+.feedback-notes {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+.login-details{
+    width: 100%;
+    height:70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-details input{
+    width:50%;
+    height: 40px;
+}
+.sub-btn{
+    background-color: #28a745;
+    width: max-content;
+    color:white;
+    height: 40px;
+    border-radius: 3px;
+    border:none;
+    transition: 0.4;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .questions-container {
+        padding: 15px;
+    }
+
+    .feedback-table th,
+    .feedback-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+@media (max-width: 480px) {
+    .header {
+        font-size: 1.2em;
+        padding: 15px;
+    }
+
+    .subject-btn {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    .feedback-table th,
+    .feedback-table td {
+        font-size: 12px;
+        padding: 6px;
+    }
+}

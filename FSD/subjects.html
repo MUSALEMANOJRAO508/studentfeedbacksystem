@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <script>
+        function entryPass() {
+            fetch('api/illegal.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data === true) {
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+        }
+        entryPass();
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-jntu-logo">
+                <img src="download.png" alt="JNTUA Logo" style="max-width: 100px;">
+            </div>
+            <div class="college-name">
+            <h2>JNTUA College of Engineering (Autonomous) Ananthapuramu</h2>
+            <p>Sir Mokshagundam Vishveshwariah Road, Ananthapuramu, Andhra Pradesh-515002, INDIA</p>
+            </div>
+            <div class="college-naac-logo">
+                <img src="JNTUANAACA.webp" alt="NAAC Logo" style="max-width: 100px;">
+            </div>
+        </div>
+    </div>  
+    <div class="details">
+        <h2>Student FeedBack System</h2>
+    </div>
+    <div class="studentdata">
+        <form action="./api/subjects.php" method="post">
+            <input type="text" name="sub1" placeholder="subject1" required>
+            <input type="text" name="sub2" placeholder="subject2" required>
+            <input type="text" name="sub3" placeholder="subject3" required>
+            <input type="text" name="sub4" placeholder="subject4" required>
+            <input type="text" name="sub5" placeholder="subject5" required>
+            <input type="text" name="sub6" placeholder="subject6" required>
+            <input type="text" name="sub7" placeholder="subject7" required>
+            <input type="text" name="sub8" placeholder="subject8" required>
+            <input type="text" name="sub9" placeholder="subject9" required>
+            <input type="text" name="sub10" placeholder="subject10" required>
+            <input type="submit" value="submit">
+        </form>    
+    </div>
+</body>
+</html>

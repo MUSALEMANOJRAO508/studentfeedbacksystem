@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Student Feedback System</title>
+    <style>
+        .section {
+            margin: 20px auto;
+            padding: 20px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .section h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .section button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-jntu-logo">
+                <img src="download.png" alt="JNTUA Logo" style="max-width: 100px;">
+            </div>
+            <div class="college-name">
+            <h2>JNTUA College of Engineering (Autonomous) Ananthapuramu</h2>
+            <p>Sir Mokshagundam Vishveshwariah Road, Ananthapuramu, Andhra Pradesh-515002, INDIA</p>
+            </div>
+            <div class="college-naac-logo">
+                <img src="JNTUANAACA.webp" alt="NAAC Logo" style="max-width: 100px;">
+            </div>
+        </div>
+    </div> 
+
+    <div class="details">
+        <h2>Student Feedback System</h2>
+    </div>
+
+    <!-- Student Data Section -->
+    <div class="section">
+        <h3>Manage Student Data</h3>
+        <button onclick="window.location.href='studentdata.html'">Student Data</button>
+    </div>
+
+    <!-- Feedback Questions Section -->
+    <div class="section">
+        <h3>Feedback Questions</h3>
+        <button onclick="window.location.href='feedbackquestions.html'">Add Questions for Feedback</button>
+    </div>
+
+    <!-- Subjects Adding Section -->
+    <div class="section">
+        <h3>Manage Subjects</h3>
+        <button onclick="window.location.href='subjects.html'">Add Subjects</button>
+    </div>
+
+    <!-- Clear Data Section -->
+    <div class="section">
+        <button onclick="window.location.href='api/cleardata.php'">Clear All Data</button>
+    </div>
+    <!--Checking result-->
+    <div class="section">
+        <h3>Click to generate Report</h3>
+        <button onclick="window.location.href='report.html'">Report</button>
+    </div>
+    
+    <!-- Logout Button -->
+    <div class="section">
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // Function to clear cookies and session and log out the user
+        function logout() {
+            // Clear cookies related to the user's session (adjust cookie names if necessary)
+            document.cookie = "faculty_userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            document.cookie = "faculty_password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            document.cookie = "student_admission=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            document.cookie = "student_dob=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+            // Clear the sessionStorage or localStorage (if used)
+            sessionStorage.clear();
+            localStorage.clear();
+
+            // Redirect the user to the login page after logging out
+            window.location.href = "api/logout.php";
+        }
+
+        // Function to ensure no credentials are pre-filled in the form after logout
+        window.onload = function() {
+            // Ensure the login form fields are empty after page reload
+            document.getElementById("role").selectedIndex = 0;
+            document.getElementById("admission").value = '';
+            document.getElementById("dob").value = '';
+            document.getElementById("userid").value = '';
+            document.getElementById("password").value = '';
+        };
+    </script>
+</body>
+</html>

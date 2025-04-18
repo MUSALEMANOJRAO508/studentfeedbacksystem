@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Responsive Login Form</title>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-jntu-logo">
+                <img src="download.png" alt="JNTUA Logo" style="max-width: 100px;">
+            </div>
+            <div class="college-name">
+            <h2>JNTUA College of Engineering (Autonomous) Ananthapuramu</h2>
+            <p>Sir Mokshagundam Vishveshwariah Road, Ananthapuramu, Andhra Pradesh-515002, INDIA</p>
+            </div>
+            <div class="college-naac-logo">
+                <img src="JNTUANAACA.webp" alt="NAAC Logo" style="max-width: 100px;">
+            </div>
+        </div>
+    </div> 
+    
+    <div class="details">
+        <h2>Student Feedback System</h2>
+    </div>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        <div class="form-group">
+            <label for="role">Select Role</label>
+            <select id="role" name="role" onchange="toggleLoginForm()">
+                <option value="">Select</option>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+            </select>
+        </div>
+        
+        <!-- Student Login Form -->
+        <form id="student-login" class="hidden" action="api/login.php" method="post">
+            <input type="hidden" name="role" value="student">
+            <div class="form-group">
+                <label for="admission">Admission Number</label>
+                <input type="text" id="admission" name="admission" required placeholder="Enter Admission Number">
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login as Student">
+            </div>
+        </form>
+        
+        <!-- Faculty Login Form -->
+        <form id="faculty-login" class="hidden" action="api/login.php" method="post">
+            <input type="hidden" name="role" value="faculty">
+            <div class="form-group">
+                <label for="userid">User ID</label>
+                <input type="text" id="userid" name="userid" required placeholder="Enter Faculty ID">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter Password">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login as Faculty">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleLoginForm() {
+            const role = document.getElementById('role').value;
+            const studentLogin = document.getElementById('student-login');
+            const facultyLogin = document.getElementById('faculty-login');
+
+            studentLogin.classList.toggle('hidden', role !== 'student');
+            facultyLogin.classList.toggle('hidden', role !== 'faculty');
+        }
+    </script>
+</body>
+</html>

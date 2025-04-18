@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Report</title>
+    <style>
+        .polling-container
+        {
+            display:flex;
+            flex-direction: row;
+            margin: 20px auto;
+            width: 50%;
+            border: 1px solid#e99898;
+            background-color: rgb(225, 231, 237);
+            box-shadow: 0 5px 5px rgb(208, 204, 204);
+            border-radius: 4px;
+        }
+        .total-count
+        {
+            width:50%;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+        .current-count{
+            width:50%;
+            border: 1px solid black;
+            border-radius: 4px;  
+        }
+        .current-count label{
+            margin: 10px auto;
+        }
+        .graph-imges{
+            width: 70%;
+            margin:0 auto;
+        }
+        .download-graph button{
+            width: 200px;
+            height:50px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: large;
+            background-color: rgb(255, 255, 55);
+            cursor: pointer;
+        }
+        .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    background-color: #368bf4;
+    color: rgb(40, 0, 0);
+    padding: 20px;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+        .header-inner{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0 auto;
+    width: 100%;
+}
+.header-jntu-logo img {
+    max-width: 100px;
+    height: auto;
+    margin: 10px;
+}
+
+.header h2 {
+    font-size: 2.0em;
+    margin: 10px 0;
+}
+.college-name h2{
+    font-family: 'museo_slab700';
+    font-weight: bold;
+}
+        
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function entryPass() {
+            fetch('api/illegal.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data === true) {
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+        }
+        entryPass();
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-jntu-logo">
+                <img src="download.png" alt="JNTUA Logo" style="max-width: 100px;">
+            </div>
+            <div class="college-name">
+            <h2>JNTUA College of Engineering (Autonomous) Ananthapuramu</h2>
+            <p>Sir Mokshagundam Vishveshwariah Road, Ananthapuramu, Andhra Pradesh-515002, INDIA</p>
+            </div>
+            <div class="college-naac-logo">
+                <img src="JNTUANAACA.webp" alt="NAAC Logo" style="max-width: 100px;">
+            </div>
+        </div>
+    </div> 
+    <div class="polling-container">
+        <div class="total-count current-count" id="total-count">
+            <!--getting the student total number of students-->
+            
+        </div>
+        <div class="current-count" id="current-count">
+                <!--GETTING THE CURRENT NUMBER OF STUDENTS ARE POLLED--> 
+        </div>
+    </div>
+    <div class="graph-imges">
+        <canvas id="chart" width="400px" height="400"></canvas>
+        <script src="charts.js"></script>
+    </div>
+    <div class="download-graph">
+        <button onclick="downloadImage()">Download
+        </button>
+    </div>
+    <script>
+        //fetch total count
+        function fetchTotalCount(){
+            fetch('api/total_count.php')
+            .then(response => response.json())
+            .then(data =>{
+                const totalContainer = document.getElementById('total-count');
+                totalContainer.innerHTML = '';
+                label = document.createElement('label');
+                label.innerHTML = `Total Count: ${data.count}`;
+                totalContainer.appendChild(label);
+            });
+        }
+        fetchTotalCount();
+        // Include the script here
+        function fetchCurrentCount() {
+            fetch('api/current_count.php')
+                .then(response => response.json())
+                .then(data => {
+                    const dataContainer = document.getElementById('current-count');
+                    dataContainer.innerHTML = '';
+                    const label = document.createElement('label');
+                    label.innerText = `Current count: ${data.count}`;
+                    dataContainer.appendChild(label);
+                })
+                .catch(error => {
+                    console.error('Error fetching count:', error);
+                    const dataContainer = document.getElementById('current-count');
+                    dataContainer.innerHTML = 'Failed to load count';
+                });
+        }
+
+        setInterval(fetchCurrentCount, 1000);  // Fetch the count after 1 second (1000 ms)
+    </script>
+    <script>
+        function downloadImage() {
+            let chartCanvas = document.getElementById("chart");
+            let link = document.createElement("a");
+            
+            link.href = chartCanvas.toDataURL("image/png");
+            link.download = "chart-image.png";
+            link.click();
+        }
+    </script>
+</body>
+</html>
